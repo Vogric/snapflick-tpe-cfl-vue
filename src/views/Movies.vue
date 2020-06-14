@@ -1,5 +1,6 @@
 <template>
-  <div class="home">
+  <div class="movies">
+      Ruta de Movies
   </div>
 </template>
 
@@ -7,6 +8,6 @@
 // @ is an alias to /src
 
 export default {
-  name: 'Home',
+  name: 'Movies',
 }
 </script>
