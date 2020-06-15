@@ -1,7 +1,12 @@
 <template>
   <div class="home">
-    <h1>HOME COMPONENT</h1>
-    <h2>Subtitulo info</h2>
+    <div class="header">
+      <h1>Nombre App</h1>
+      <h2>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae,
+        accusantium?
+      </h2>
+    </div>
   </div>
 </template>
 
@@ -15,17 +20,18 @@ export default {
 .home {
   width: 100%;
   height: calc(100vh - 57.81px);
-  background-image: url("../assets/backgroundCover.gif");
+  background-image: url("../assets/8.gif");
   background-size: cover;
 }
-h1 {
+.header {
+  width: 50rem;
+  padding-top: 5rem;
   color: white;
-  text-shadow: #741ccc 1px 1px;
-  font-size: 4rem;
-  padding-top: 4rem;
-  font-weight: bold;
+  text-shadow: #000000 3px 3px;
 }
-h2 {
-  color: white;
+
+h1 {
+  font-size: 4rem;
+  font-weight: bold;
 }
 </style>

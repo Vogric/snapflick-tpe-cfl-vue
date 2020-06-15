@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="app">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">
+    <nav class="navbar navbar-expand-lg">
+      <router-link class="navbar-brand" to="/">
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Blue_question_mark_icon.svg/1200px-Blue_question_mark_icon.svg.png"
           width="30"
@@ -9,7 +9,7 @@
           alt
           loading="lazy"
         />
-      </a>
+      </router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -24,13 +24,13 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li>
-            <router-link class="nav-link" to="/">HOME</router-link>
+            <router-link class="nav-link" to="/">Home</router-link>
           </li>
           <li>
-            <router-link class="nav-link" to="/movies">MOVIES</router-link>
+            <router-link class="nav-link" to="/movies">Movies</router-link>
           </li>
           <li>
-            <router-link class="nav-link" to="/contact">CONTACT</router-link>
+            <router-link class="nav-link" to="/sign-up">Sign up</router-link>
           </li>
         </ul>
       </div>
@@ -47,5 +47,13 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+}
+.navbar {
+  background-color: #000000;
+  color: white;
+}
+
+#nav a.router-link-exact-active {
+  color: rgb(0, 255, 136);
 }
 </style>

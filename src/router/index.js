@@ -1,31 +1,31 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Movies from '../views/Movies.vue'
-import Contact from '../views/Contact.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Home from "../views/Home.vue";
+import Movies from "../views/Movies.vue";
+import SignUp from "../views/SignUp.vue";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
-  const routes = [
+const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: "/",
+    name: "Home",
+    component: Home,
   },
   {
-    path: '/movies',
-    name: 'Movies',
-    component: Movies
+    path: "/movies",
+    name: "Movies",
+    component: Movies,
   },
   {
-    path: '/contact',
-    name: 'Contact',
-    component: Contact
+    path: "/sign-up",
+    name: "Sign up",
+    component: SignUp,
   },
-]
+];
 
 const router = new VueRouter({
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;
