@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">Vue.js TPE-CFL</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -14,16 +14,8 @@
        <li>
         <a class="nav-link" href="#">Movies</a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Generos
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Acción</a>
-          <a class="dropdown-item" href="#">Ciencia Ficción</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Ver más</a>
-        </div>
+      <li>
+        <a class="nav-link" href="#">Contact</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
