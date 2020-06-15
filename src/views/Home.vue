@@ -14,11 +14,13 @@ export default {
 <style lang="css" scoped>
 .home {
   width: 100%;
-  height: calc(100vh- 57.81px);
-  background-image: url();
+  height: calc(100vh - 57.81px);
+  background-image: url("../assets/backgroundCover.gif");
+  background-size: cover;
 }
 h1 {
-  color: red;
+  color: white;
+  text-shadow: #741ccc 1px 1px;
   font-size: 4rem;
   padding-top: 4rem;
   font-weight: bold;
