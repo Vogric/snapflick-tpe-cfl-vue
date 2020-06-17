@@ -15,53 +15,39 @@
     <form>
       <h2>Complete the form to have your account</h2>
       <div class="form-row">
-        <div class="col-md-6 mb-3">
-          <label for="validationServer01">First name</label>
+        <div class="col-md-4 mb-3" :class="{ invalid: $v.firstName.$error }">
+          <label>First name</label>
           <input
             type="text"
+            name="firstName"
+            v-model="firstName"
+            @input="$v.firstName.$touch()"
             class="form-control"
-            id="validationServer01"
-            value=""
-            placeholder=""
-            required
           />
-          <div class="valid-feedback">
-            <!-- Looks good!
-            class="form-control is-valid" -->
-          </div>
         </div>
-        <div class="col-md-6 mb-3">
-          <label for="validationServer02">Last name</label>
+        <div class="col-md-4 mb-3 " :class="{ invalid: $v.lastName.$error }">
+          <label>Last name</label>
           <input
             type="text"
+            v-model="lastName"
+            @input="$v.lastName.$touch()"
             class="form-control"
-            id="validationServer02"
-            value=""
-            required
           />
-          <div class="valid-feedback">
-            <!-- Looks good!
-            class="form-control is-valid" -->
-          </div>
+        </div>
+        <div class="col-md-4 mb-3" :class="{ invalid: $v.email.$error }">
+          <label>Mail</label>
+          <input
+            type="text"
+            v-model="email"
+            @input="$v.email.$touch()"
+            class="form-control"
+          />
         </div>
       </div>
       <div class="form-row">
-        <div class="col-md-6 mb-3">
-          <label for="validationServer03">City</label>
-          <input
-            type="text"
-            class="form-control"
-            id="validationServer03"
-            required
-          />
-          <div class="invalid-feedback">
-            <!-- class="form-control is-invalid"
-              Please provide a valid city. -->
-          </div>
-        </div>
-        <div class="col-md-3 mb-3">
-          <label for="validationServer04">State</label>
-          <select class="custom-select" id="validationServer04" required>
+        <div class="col-md-4 mb-3">
+          <label>State</label>
+          <select class="custom-select">
             <option selected disabled value="">Select your country</option>
             <option>Argentina</option>
             <option>United States</option>
@@ -79,49 +65,83 @@
             <option>Brazil</option>
             <option>Australia</option>
           </select>
-          <div class="invalid-feedback">
-            <!-- Please select a valid state. -->
-          </div>
         </div>
-        <div class="col-md-3 mb-3">
-          <label for="validationServer05">Zip</label>
+        <div class="col-md-4 mb-3" :class="{ invalid: $v.city.$error }">
+          <label>City</label>
           <input
             type="text"
+            v-model="city"
+            @input="$v.city.$touch()"
             class="form-control"
-            id="validationServer05"
+            id="validationServer03"
             required
           />
           <div class="invalid-feedback">
-            <!-- Please provide a valid zip
-           class="form-control is-invalid" ". -->
+            <!-- class="form-control is-invalid"
+              Please provide a valid city. -->
           </div>
+        </div>
+        <div class="col-md-4 mb-3" :class="{ invalid: $v.zip.$error }">
+          <label>Zip</label>
+          <input
+            type="text"
+            v-model="zip"
+            @input="$v.zip.$touch()"
+            class="form-control"
+          />
+          <div class="invalid-feedback"></div>
         </div>
       </div>
       <div class="form-group">
         <div class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            value=""
-            id="invalidCheck3"
-            required
-          />
-          <label class="form-check-label" for="invalidCheck3">
+          <input class="form-check-input" type="checkbox" />
+          <label class="form-check-label">
             Agree to terms and conditions
           </label>
-          <div class="invalid-feedback">
-            You must agree before submitting.
-          </div>
         </div>
       </div>
-      <button class="btn btn-primary" type="submit">Sign up now</button>
+      <button class="btn btn-danger" type="submit">Sign up now</button>
     </form>
   </div>
 </template>
 
 <script>
+import { required, numeric, email } from "vuelidate/lib/validators";
 export default {
   name: "SignUp",
+  props: {
+    msg: String,
+  },
+  data() {
+    return {
+      firstName: null,
+      lastName: null,
+      email: null,
+      city: null,
+      zip: null,
+    };
+  },
+
+  validations: {
+    firstName: {
+      required,
+    },
+    lastName: {
+      required,
+    },
+    email: {
+      required,
+      email,
+    },
+    city: {
+      required,
+    },
+    state: {},
+    zip: {
+      required,
+      numeric,
+    },
+  },
 };
 </script>
 
