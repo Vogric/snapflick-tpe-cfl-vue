@@ -1,10 +1,9 @@
 <template>
   <div class="home">
     <div class="header">
-      <h1>Nombre App</h1>
+      <h1>Find your favorite movies</h1>
       <h2>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae,
-        accusantium?
+        Watch all the movies you want and find them in a snap!
       </h2>
     </div>
   </div>
@@ -24,14 +23,21 @@ export default {
   background-size: cover;
 }
 .header {
-  width: 50rem;
+  width: 37rem;
   padding-top: 5rem;
+  padding-left: 2rem;
   color: white;
   text-shadow: #000000 3px 3px;
+  text-align: initial;
 }
 
 h1 {
-  font-size: 4rem;
+  font-size: 4.5rem;
   font-weight: bold;
+}
+
+h2 {
+  font-size: 1.5rem;
+  width: 31rem;
 }
 </style>

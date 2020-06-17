@@ -3,9 +3,9 @@
     <nav class="navbar navbar-expand-lg">
       <router-link class="navbar-brand" to="/">
         <img
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Blue_question_mark_icon.svg/1200px-Blue_question_mark_icon.svg.png"
-          width="30"
-          height="30"
+          src="./assets/snapflick.png"
+          width="120"
+          height="45"
           alt
           loading="lazy"
         />
@@ -51,6 +51,15 @@
 .navbar {
   background-color: #000000;
   color: white;
+}
+
+.navbar a {
+  color: white;
+  font-size: 1.2rem;
+}
+
+.navbar a:hover {
+  color: rgb(255, 0, 0);
 }
 
 #nav a.router-link-exact-active {
