@@ -12,6 +12,19 @@
         Search
       </button>
     </form>
+    <section class="cards-container">
+      <div v-for="movie in movies" :key="movie" class="card">
+        <img src="" class="card-img-top" alt="movie" />
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </section>
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-center">
         <li class="page-item disabled">
@@ -33,6 +46,18 @@
 <script>
 export default {
   name: "Movies",
+  data() {
+    return {
+      movies: [],
+    };
+  },
+  mounted() {
+    fetch("http://www.omdbapi.com/?i=tt3896198&apikey=d2516297&s=")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
+  },
 };
 </script>
 
@@ -54,5 +79,15 @@ h1 {
 
 form {
   padding-top: 2rem;
+}
+
+.cards-container {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card {
+  width: 20%;
 }
 </style>
