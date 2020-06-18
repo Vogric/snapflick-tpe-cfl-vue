@@ -6,7 +6,6 @@
         This is a simple hero unit, a simple jumbotron-style component for
         calling extra attention to featured content or information.
       </p>
-      <hr class="my-4" />
       <p>
         It uses utility classes for typography and spacing to space content out
         within the larger container.
@@ -24,6 +23,7 @@
             @input="$v.firstName.$touch()"
             class="form-control"
           />
+          <p v-if="!$v.firstName.required">Enter your first name</p>
         </div>
         <div class="col-md-4 mb-3 " :class="{ invalid: $v.lastName.$error }">
           <label>Last name</label>
@@ -33,15 +33,17 @@
             @input="$v.lastName.$touch()"
             class="form-control"
           />
+          <p v-if="!$v.lastName.required">Enter your last name</p>
         </div>
         <div class="col-md-4 mb-3" :class="{ invalid: $v.email.$error }">
           <label>Mail</label>
           <input
-            type="text"
+            type="email"
             v-model="email"
             @input="$v.email.$touch()"
             class="form-control"
           />
+          <p v-if="!$v.lastName.required">Enter your Mail</p>
         </div>
       </div>
       <div class="form-row">
@@ -73,28 +75,28 @@
             v-model="city"
             @input="$v.city.$touch()"
             class="form-control"
-            id="validationServer03"
-            required
           />
-          <div class="invalid-feedback">
-            <!-- class="form-control is-invalid"
-              Please provide a valid city. -->
-          </div>
+          <p v-if="!$v.city.required">Enter your City</p>
         </div>
-        <div class="col-md-4 mb-3" :class="{ invalid: $v.zip.$error }">
-          <label>Zip</label>
+        <div class="col-md-4 mb-3" :class="{ invalid: $v.cellNumber.$error }">
+          <label>Cell number</label>
           <input
-            type="text"
-            v-model="zip"
-            @input="$v.zip.$touch()"
+            type="number"
+            v-model="cellNumber"
+            @input="$v.cellNumber.$touch()"
             class="form-control"
           />
-          <div class="invalid-feedback"></div>
+          <p v-if="!$v.cellNumber.required">Enter your cell number</p>
         </div>
       </div>
       <div class="form-group">
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" />
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="invalidCheck"
+            required
+          />
           <label class="form-check-label">
             Agree to terms and conditions
           </label>
@@ -106,7 +108,7 @@
 </template>
 
 <script>
-import { required, numeric, email } from "vuelidate/lib/validators";
+import { required } from "vuelidate/lib/validators";
 export default {
   name: "SignUp",
   props: {
@@ -118,7 +120,7 @@ export default {
       lastName: null,
       email: null,
       city: null,
-      zip: null,
+      cellNumber: null,
     };
   },
 
@@ -131,15 +133,13 @@ export default {
     },
     email: {
       required,
-      email,
     },
     city: {
       required,
     },
     state: {},
-    zip: {
+    cellNumber: {
       required,
-      numeric,
     },
   },
 };
@@ -148,37 +148,55 @@ export default {
 <style lang="css" scoped>
 .sign-up {
   width: 100%;
-  height: calc(100vh - 57.72px);
+  height: calc(100vh - 71px);
   background-image: url("../assets/10.gif");
   background-size: cover;
 }
 .jumbotron {
   background-color: #000000ad;
+  margin: 0;
+  padding: 27px;
 }
 
 .display-4 {
   color: white;
-  font-size: 4.5rem;
+  font-size: 3rem;
 }
 
 p.lead {
+  font-size: 1.3rem;
   color: white;
 }
 
 p {
   color: grey;
+  font-size: 1rem;
+  margin: 0;
 }
 
 h2 {
   color: white;
-  padding-bottom: 2rem;
+  font-size: 1.5rem;
+  padding: 1rem;
 }
-
 form {
-  padding-top: 8rem;
+  padding: 0px 140px 0px 140px;
+}
+div.form-row {
+  height: 130px;
 }
 
-form label {
+label {
+  color: white;
+}
+
+.invalid label {
+  color: red;
+}
+
+.invalid input {
+  background-color: rgba(255, 0, 0, 0.24);
+  border: 2px solid #ff0000b0;
   color: white;
 }
 </style>

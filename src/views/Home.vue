@@ -18,7 +18,7 @@ export default {
 <style lang="css" scoped>
 .home {
   width: 100%;
-  height: calc(100vh - 57.81px);
+  height: calc(100vh - 71px);
   background-image: url("../assets/8.gif");
   background-size: cover;
 }
