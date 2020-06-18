@@ -3,12 +3,11 @@
     <div class="jumbotron">
       <h1 class="display-4">Create your account</h1>
       <p class="lead">
-        This is a simple hero unit, a simple jumbotron-style component for
-        calling extra attention to featured content or information.
+        Get your account to enjoy all the content that SnapFlick has to give
+        you!
       </p>
       <p>
-        It uses utility classes for typography and spacing to space content out
-        within the larger container.
+        What are you waiting for?
       </p>
     </div>
     <form>
