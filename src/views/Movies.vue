@@ -13,15 +13,15 @@
       </button>
     </form>
     <section class="cards-container">
-      <div v-for="movie in movies" :key="movie" class="card">
-        <img src="" class="card-img-top" alt="movie" />
+      <div v-for="movie in movies" :key="movie.Title" class="card">
+        <img :src="movie.Poster" class="card-img-top" alt="movie" />
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <ul>
+            <li>Title: {{ movie.Title }}</li>
+            <li>Plot {{ movie.Genre }}</li>
+          </ul>
+          <a href="#" class="btn btn-primary">More details</a>
         </div>
       </div>
     </section>
@@ -52,7 +52,7 @@ export default {
     };
   },
   mounted() {
-    fetch("http://www.omdbapi.com/?i=tt3896198&apikey=d2516297&s=")
+    fetch("http://www.omdbapi.com/?i=tt3896198&apikey=d2516297")
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
