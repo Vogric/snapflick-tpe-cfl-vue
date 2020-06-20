@@ -17,7 +17,11 @@
         <img :src="movie.poster_path" class="card-img-top" alt="movie" />
         <div class="card-body">
           <!-- <p class="card-title">{{ movie.Title }}</p> -->
-          <a href="#" class="btn btn-secondary">More details</a>
+          <router-link
+            class="btn btn-secondary"
+            :to="{ name: 'Movie', params: { id: movie.id } }"
+            >{{ movie.title }}
+          </router-link>
         </div>
       </div>
     </section>
