@@ -13,8 +13,8 @@
       </button>
     </form>
     <section class="cards-container">
-      <div v-for="movie in movies" :key="movie.Title" class="card">
-        <img :src="movie.Poster" class="card-img-top" alt="movie" />
+      <div v-for="movie in movies" :key="movie.title" class="card">
+        <img :src="movie.poster_path" class="card-img-top" alt="movie" />
         <div class="card-body">
           <!-- <p class="card-title">{{ movie.Title }}</p> -->
           <a href="#" class="btn btn-secondary">More details</a>
@@ -48,11 +48,17 @@ export default {
     };
   },
   mounted() {
-    fetch("http://www.omdbapi.com/?s=future&apikey=d2516297")
+    const APIKEY = "0b536ecc2fc4b0028b1a20813de48533";
+    const BASEURL = "https://api.themoviedb.org/3/";
+    const URL = `${BASEURL}discover/movie?primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22&api_key=${APIKEY}`;
+    fetch(URL)
       .then((response) => response.json())
       .then((data) => {
-        this.movies = data.Search;
-        console.log(data.Search);
+        this.movies = data.results.map((m) => {
+          m.poster_path = `https://image.tmdb.org/t/p/w185_and_h278_bestv2${m.poster_path}`;
+          return m;
+        });
+        console.log(data.results);
       });
   },
 };
