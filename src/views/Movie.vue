@@ -1,35 +1,28 @@
 <template>
   <div class="movie">
-    <h1>Movie information</h1>
-    <form class="form-inline my-2 my-lg-0 justify-content-center">
-      <input
-        class="form-control mr-sm-2, bg-dark"
-        type="search"
-        placeholder="Search a movie"
-        aria-label="Search"
-      />
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-        Search
-      </button>
-    </form>
-    <section class="cards-container">
-      <div v-for="movie in movies" :key="movie.title" class="card">
-        <h1>{{ movie.title }}</h1>
-        <ul>
-          <li>{{ movie.overview }}</li>
-          <li>{{ movie.genre_ids }}</li>
-          <li>{{ movie.release_date }}</li>
-          <li>{{ movie.original_language }}</li>
-          <li>{{ movie.popularity }}</li>
-          <li>{{ movie.vote_average }}</li>
-          <li>{{ movie.vote_count }}</li>
-        </ul>
-        <img :src="movie.poster_path" class="card-img-top" :alt="movie.title" />
-        <div class="card-body">
-          <a href="#" class="btn btn-secondary">More details</a>
+    <div v-if="Object.keys(movie).length">
+      <div class="Movie text-white py-5"></div>
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-12 col-md-4 col-lg-3">
+            <img :src="movie.poster_path" />
+          </div>
+          <div class="col-12 col-md-8 col-lg9">
+            <h2>Details: {{ movie.title }}</h2>
+            <p v-text="movie.overview"></p>
+            <ul>
+              <li>Overview: {{ movie.overview }}</li>
+              <li>Genre: {{ movie.genre_ids }}</li>
+              <li>Release date: {{ movie.release_date }}</li>
+              <li>Original language: {{ movie.original_language }}</li>
+              <li>Popularity: {{ movie.popularity }}</li>
+              <li>Vote average: {{ movie.vote_average }}</li>
+              <li>Vote count: {{ movie.vote_count }}</li>
+            </ul>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-center">
         <li class="page-item disabled">
@@ -57,8 +50,7 @@ export default {
     };
   },
   mounted() {
-    const currentId = this.$route.params.id;
-    this.fetchMovie(currentId);
+    this.fetchMovie();
   },
   watch: {
     $route(to) {
@@ -67,17 +59,14 @@ export default {
     },
   },
   methods: {
-    fetchMovie(id) {
-      const APIKEY = "0b536ecc2fc4b0028b1a20813de48533";
-      const BASEURL = "https://api.themoviedb.org/3/";
-      const URL = `${BASEURL}discover/movie?primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22&api_key=${APIKEY}`;
-      fetch(URL + id)
-        .then((response) => response.json())
+    fetchMovie() {
+      fetch(
+        `${this.apiBaseURL}movie/${this.$route.params.id}?${this.apiConfig}`
+      )
+        .then((res) => res.json())
         .then((data) => {
-          this.movie = data.results.map((m) => {
-            m.poster_path = `https://image.tmdb.org/t/p/w185_and_h278_bestv2${m.poster_path}`;
-            return m;
-          });
+          this.movie = data;
+          console.log(data);
         });
     },
   },

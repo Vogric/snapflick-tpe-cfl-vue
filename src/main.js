@@ -4,7 +4,9 @@ import router from "./router";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Vuelidate from "vuelidate";
+import { Mixins } from "./mixins";
 
+Vue.mixin(Mixins);
 Vue.use(Vuelidate);
 
 Vue.config.productionTip = false;

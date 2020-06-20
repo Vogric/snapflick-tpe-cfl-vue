@@ -3,7 +3,7 @@
     <h1>Watch the available movies</h1>
     <form class="form-inline my-2 my-lg-0 justify-content-center">
       <input
-        class="form-control mr-sm-2, bg-dark"
+        class="form-control mr-sm-2"
         type="search"
         placeholder="Search a movie"
         aria-label="Search"
@@ -51,19 +51,22 @@ export default {
       movies: [],
     };
   },
-  mounted() {
-    const APIKEY = "0b536ecc2fc4b0028b1a20813de48533";
-    const BASEURL = "https://api.themoviedb.org/3/";
-    const URL = `${BASEURL}discover/movie?primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22&api_key=${APIKEY}`;
-    fetch(URL)
-      .then((response) => response.json())
-      .then((data) => {
-        this.movies = data.results.map((m) => {
-          m.poster_path = `https://image.tmdb.org/t/p/w185_and_h278_bestv2${m.poster_path}`;
-          return m;
+
+  methods: {
+    getUltimateMovies() {
+      const URL = `${this.apiBaseURL}discover/movie?primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22&${this.apiConfig}`;
+      fetch(URL)
+        .then((response) => response.json())
+        .then(({ results }) => {
+          this.movies = results.map((m) => {
+            m.poster_path = `https://image.tmdb.org/t/p/w185_and_h278_bestv2${m.poster_path}`;
+            return m;
+          });
         });
-        console.log(data.results);
-      });
+    },
+  },
+  mounted() {
+    this.getUltimateMovies();
   },
 };
 </script>
@@ -80,17 +83,24 @@ h1 {
   color: white;
   font-size: 2.5rem;
   font-weight: bold;
+  padding-top: 4px;
 }
 
 form {
-  padding-top: 2rem;
+  padding: 1rem;
+}
+
+input.form-control.mr-sm-2 {
+  width: 267px;
+  color: white;
+  background-color: black;
 }
 
 .cards-container {
   display: flex;
   flex-wrap: wrap;
-  width: 80%;
-  height: 68%;
+  width: 86%;
+  height: 69%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -107,7 +117,7 @@ div.card-body {
 }
 
 .btn-secondary {
-  font-size: 12px;
+  font-size: 0.7rem;
   width: 93px;
   background-color: #000000c7;
   padding: 5px;
@@ -117,5 +127,9 @@ div.card-body {
 .btn-secondary:hover {
   color: rgb(255, 0, 0);
   background-color: #00000000;
+}
+
+.pagination li .page-item {
+  background-color: orange;
 }
 </style>
