@@ -16,12 +16,8 @@
       <div v-for="movie in movies" :key="movie.Title" class="card">
         <img :src="movie.Poster" class="card-img-top" alt="movie" />
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <ul>
-            <li>Title: {{ movie.Title }}</li>
-            <li>Plot {{ movie.Genre }}</li>
-          </ul>
-          <a href="#" class="btn btn-primary">More details</a>
+          <!-- <p class="card-title">{{ movie.Title }}</p> -->
+          <a href="#" class="btn btn-secondary">More details</a>
         </div>
       </div>
     </section>
@@ -52,10 +48,11 @@ export default {
     };
   },
   mounted() {
-    fetch("http://www.omdbapi.com/?i=tt3896198&apikey=d2516297")
+    fetch("http://www.omdbapi.com/?s=future&apikey=d2516297")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        this.movies = data.Search;
+        console.log(data.Search);
       });
   },
 };
@@ -71,9 +68,7 @@ export default {
 
 h1 {
   color: white;
-  text-shadow: #741ccc 1px 1px;
-  font-size: 3.5rem;
-  padding-top: 4rem;
+  font-size: 2.5rem;
   font-weight: bold;
 }
 
@@ -82,12 +77,35 @@ form {
 }
 
 .cards-container {
+  display: flex;
+  flex-wrap: wrap;
   width: 80%;
+  height: 68%;
   margin-left: auto;
   margin-right: auto;
 }
 
 .card {
-  width: 20%;
+  width: 8%;
+  height: 10%;
+  margin: 10px;
+}
+
+div.card-body {
+  margin: 0;
+  padding: 0;
+}
+
+.btn-secondary {
+  font-size: 12px;
+  width: 93px;
+  background-color: #000000c7;
+  padding: 5px;
+  border: 0;
+}
+
+.btn-secondary:hover {
+  color: rgb(255, 0, 0);
+  background-color: #00000000;
 }
 </style>

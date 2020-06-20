@@ -62,7 +62,7 @@
   color: rgb(255, 0, 0);
 }
 
-#nav a.router-link-exact-active {
-  color: rgb(0, 255, 136);
+a.router-link-exact-active {
+  color: rgb(136, 25, 25);
 }
 </style>
