@@ -27,7 +27,7 @@
             alt="First slide"
           />
           <div class="carousel-caption d-none d-md-block">
-            <h5>Black Mirror</h5>
+            <h1>Black Mirror</h1>
             <p>
               The dark side of the technological era in which one lives: the
               paranoia of being watched as in a panopticon, the terrorist uses
@@ -42,7 +42,7 @@
             alt="Second slide"
           />
           <div class="carousel-caption d-none d-md-block">
-            <h5>La casa de papel</h5>
+            <h1>La casa de papel</h1>
             <p>
               An organized gang of thieves aims to commit the heist of the
               century at the National Mint and Stamps. Five months of
@@ -58,7 +58,7 @@
             alt="Third slide"
           />
           <div class="carousel-caption d-none d-md-block">
-            <h5>Silicon Valley</h5>
+            <h1>Silicon Valley</h1>
             <p>
               Richard is a shy programmer who lives with his only three friends
               and they discover an important algorithm that will be a battle
@@ -74,7 +74,7 @@
             alt="Four slide"
           />
           <div class="carousel-caption d-none d-md-block">
-            <h5>Rick and Morty</h5>
+            <h1>Rick and Morty</h1>
             <p>
               After being missing for almost 20 years, Rick Sánchez arrives
               unexpectedly at the door of his daughter Beth's house and goes to
@@ -90,7 +90,7 @@
             alt="Five slide"
           />
           <div class="carousel-caption d-none d-md-block">
-            <h5>Stranger Things</h5>
+            <h1>Stranger Things</h1>
             <p>
               When a child goes missing, his friends, family, and police are
               involved in a series of mysterious events as they try to find him.
@@ -106,7 +106,7 @@
             alt="Six slide"
           />
           <div class="carousel-caption d-none d-md-block">
-            <h5>Lie to Me</h5>
+            <h1>Lie to Me</h1>
             <p>
               Dr. Carl Lihgtman analyzes facial expressions, body movement, and
               tone of voice to determine if a person is lying by aiding
@@ -121,7 +121,7 @@
             alt="Seven slide"
           />
           <div class="carousel-caption d-none d-md-block">
-            <h5>Joker</h5>
+            <h1>Joker</h1>
             <p>
               Arthur Fleck loves to make people laugh, but his career as a
               comedian is a failure. Social repudiation, marginalization and a
@@ -137,7 +137,7 @@
             alt="Eight slide"
           />
           <div class="carousel-caption d-none d-md-block">
-            <h5>The Big Bang Theory</h5>
+            <h1>The Big Bang Theory</h1>
             <p>
               Leonard and Sheldon are two privileged brains who have absolutely
               no idea how to relate socially, especially when it comes to girls.
@@ -184,18 +184,8 @@ export default {
 }
 
 h1 {
-  font-size: 4.5rem;
-  font-weight: bold;
-}
-
-h2 {
-  font-size: 1.5rem;
-  width: 31rem;
-}
-
-h5 {
   color: white;
-  font-size: 2rem;
+  font-size: 2.2rem;
   text-shadow: #000000 2px 2px;
 }
 

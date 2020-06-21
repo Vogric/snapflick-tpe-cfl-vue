@@ -75,6 +75,11 @@ export default {
 
 .movieDetail {
   padding-top: 2rem;
+  height: 81vh;
+}
+
+div.row {
+  padding-top: 2rem;
 }
 
 h2 {

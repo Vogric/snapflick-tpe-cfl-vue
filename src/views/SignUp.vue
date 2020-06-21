@@ -1,6 +1,6 @@
 <template>
   <div class="sign-up">
-    <div class="jumbotron">
+    <!-- <div class="jumbotron">
       <h1 class="display-4">Create your account</h1>
       <p class="lead">
         Get your account to enjoy all the content that SnapFlick has to give
@@ -9,11 +9,11 @@
       <p>
         What are you waiting for?
       </p>
-    </div>
+    </div> -->
     <form>
-      <h2>Complete the form to have your account</h2>
+      <h1>Complete the form to have your account</h1>
       <div class="form-row">
-        <div class="col-md-4 mb-3" :class="{ invalid: $v.firstName.$error }">
+        <div class="col-md-6 mb-3 " :class="{ invalid: $v.firstName.$error }">
           <label>First name</label>
           <input
             type="text"
@@ -24,7 +24,7 @@
           />
           <p v-if="!$v.firstName.required">Enter your first name</p>
         </div>
-        <div class="col-md-4 mb-3 " :class="{ invalid: $v.lastName.$error }">
+        <div class="col-md-6 mb-3 " :class="{ invalid: $v.lastName.$error }">
           <label>Last name</label>
           <input
             type="text"
@@ -34,7 +34,9 @@
           />
           <p v-if="!$v.lastName.required">Enter your last name</p>
         </div>
-        <div class="col-md-4 mb-3" :class="{ invalid: $v.email.$error }">
+      </div>
+      <div class="form-row">
+        <div class="col-md-6 mb-3" :class="{ invalid: $v.email.$error }">
           <label>Mail</label>
           <input
             type="email"
@@ -44,40 +46,7 @@
           />
           <p v-if="!$v.lastName.required">Enter your Mail</p>
         </div>
-      </div>
-      <div class="form-row">
-        <div class="col-md-4 mb-3">
-          <label>State</label>
-          <select class="custom-select">
-            <option selected disabled value="">Select your country</option>
-            <option>Argentina</option>
-            <option>United States</option>
-            <option>Italy</option>
-            <option>France</option>
-            <option>England</option>
-            <option>Spain</option>
-            <option>Switzerland</option>
-            <option>New Zealand</option>
-            <option>Sweeden</option>
-            <option>Norway</option>
-            <option>China</option>
-            <option>Germany</option>
-            <option>Japan</option>
-            <option>Brazil</option>
-            <option>Australia</option>
-          </select>
-        </div>
-        <div class="col-md-4 mb-3" :class="{ invalid: $v.city.$error }">
-          <label>City</label>
-          <input
-            type="text"
-            v-model="city"
-            @input="$v.city.$touch()"
-            class="form-control"
-          />
-          <p v-if="!$v.city.required">Enter your City</p>
-        </div>
-        <div class="col-md-4 mb-3" :class="{ invalid: $v.cellNumber.$error }">
+        <div class="col-md-6 mb-3" :class="{ invalid: $v.cellNumber.$error }">
           <label>Cell number</label>
           <input
             type="number"
@@ -86,6 +55,17 @@
             class="form-control"
           />
           <p v-if="!$v.cellNumber.required">Enter your cell number</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-12 mb-3" :class="{ invalid: $v.textArea.$error }">
+          <textarea
+            class="form-control"
+            v-model="textArea"
+            @input="$v.textArea.$touch()"
+            id="exampleFormControlTextarea1"
+            rows="3"
+          ></textarea>
         </div>
       </div>
       <div class="form-group">
@@ -118,8 +98,8 @@ export default {
       firstName: null,
       lastName: null,
       email: null,
-      city: null,
       cellNumber: null,
+      textArea: null,
     };
   },
 
@@ -133,11 +113,10 @@ export default {
     email: {
       required,
     },
-    city: {
+    cellNumber: {
       required,
     },
-    state: {},
-    cellNumber: {
+    textArea: {
       required,
     },
   },
@@ -173,13 +152,13 @@ p {
   margin: 0;
 }
 
-h2 {
+h1 {
   color: white;
-  font-size: 1.5rem;
+  font-size: 2rem;
   padding: 1rem;
 }
 form {
-  padding: 0px 140px 0px 140px;
+  padding: 0px 280px 0px 280px;
 }
 div.form-row {
   height: 130px;
@@ -191,6 +170,11 @@ label {
 
 .invalid label {
   color: red;
+}
+
+input,
+textarea {
+  background-color: #ffffffb5;
 }
 
 .invalid input {

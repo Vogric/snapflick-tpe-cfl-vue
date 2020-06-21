@@ -81,7 +81,6 @@ export default {
 h1 {
   color: white;
   font-size: 2.5rem;
-  font-weight: bold;
   padding-top: 4px;
 }
 
@@ -126,9 +125,5 @@ div.card-body {
 .btn-secondary:hover {
   color: rgb(255, 0, 0);
   background-color: #00000000;
-}
-
-.pagination li .page-item {
-  background-color: orange;
 }
 </style>
