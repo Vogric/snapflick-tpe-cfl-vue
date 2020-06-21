@@ -1,43 +1,37 @@
 <template>
   <div class="movie">
     <div v-if="Object.keys(movie).length">
-      <div class="Movie text-white py-5"></div>
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-12 col-md-4 col-lg-3">
-            <img :src="movie.poster_path" />
-          </div>
-          <div class="col-12 col-md-8 col-lg9">
-            <h2>Details: {{ movie.title }}</h2>
-            <p v-text="movie.overview"></p>
-            <ul>
-              <li>Overview: {{ movie.overview }}</li>
-              <li>Genre: {{ movie.genre_ids }}</li>
-              <li>Release date: {{ movie.release_date }}</li>
-              <li>Original language: {{ movie.original_language }}</li>
-              <li>Popularity: {{ movie.popularity }}</li>
-              <li>Vote average: {{ movie.vote_average }}</li>
-              <li>Vote count: {{ movie.vote_count }}</li>
-            </ul>
+      <div
+        class="movieDetail text-white py-5"
+        :style="{
+          background:
+            'linear-gradient(rgba(48, 236, 0, 0.43),rgba(0, 0, 0, 0.32),rgba(255, 0, 0, 0.42)),url(https://image.tmdb.org/t/p/w1400_and_h450_face' +
+            movie.backdrop_path +
+            ')',
+          'background-size': 'cover',
+        }"
+      >
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-12 col-md-4 col-lg-3">
+              <img :src="movie.poster_path | coverURL" class="w-100" />
+            </div>
+            <div class="col-12 col-md-8 col-lg9">
+              <h2>{{ movie.title }}</h2>
+              <ul>
+                <li>{{ movie.overview }}</li>
+                <li>Category: {{ movie.genre_ids }}</li>
+                <li>Release date: {{ movie.release_date }}</li>
+                <li>Original language: {{ movie.original_language }}</li>
+                <li>Popularity: {{ movie.popularity }}</li>
+                <li>Vote average: {{ movie.vote_average }}</li>
+                <li>Vote count: {{ movie.vote_count }}</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-          <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
-            >Previous</a
-          >
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#">Next</a>
-        </li>
-      </ul>
-    </nav>
   </div>
 </template>
 
@@ -66,7 +60,6 @@ export default {
         .then((res) => res.json())
         .then((data) => {
           this.movie = data;
-          console.log(data);
         });
     },
   },
@@ -74,36 +67,18 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.movies {
+.movie {
   width: 100%;
   height: calc(100vh - 71px);
-  background-image: url("../assets/10.gif");
-  background-size: cover;
+  background-color: black;
 }
 
-h1 {
-  color: white;
-  font-size: 2.5rem;
-  font-weight: bold;
-}
-
-form {
+.movieDetail {
   padding-top: 2rem;
 }
 
-.cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  width: 80%;
-  height: 68%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.card {
-  width: 8%;
-  height: 10%;
-  margin: 10px;
+h2 {
+  font-size: 80px;
 }
 
 div.card-body {
@@ -122,5 +97,13 @@ div.card-body {
 .btn-secondary:hover {
   color: rgb(255, 0, 0);
   background-color: #00000000;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  font-size: 18px;
 }
 </style>

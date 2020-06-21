@@ -16,7 +16,6 @@
       <div v-for="movie in movies" :key="movie.title" class="card">
         <img :src="movie.poster_path" class="card-img-top" alt="movie" />
         <div class="card-body">
-          <!-- <p class="card-title">{{ movie.Title }}</p> -->
           <router-link
             class="btn btn-secondary"
             :to="{ name: 'Movie', params: { id: movie.id } }"
