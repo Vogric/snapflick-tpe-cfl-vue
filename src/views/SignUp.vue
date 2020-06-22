@@ -10,10 +10,10 @@
               <input
                 type="text"
                 class="form-control"
-                v-model.trim="$.firstName.$model"
+                v-model.trim="$v.firstName.$model"
                 :class="{
                   'is-invalid': $v.firstName.$error,
-                  'is-valid': !v.firstName.$invalid,
+                  'is-valid': !$v.firstName.$invalid,
                 }"
               />
               <div class="valid-feedback">Your first name is valid!</div>
@@ -36,10 +36,10 @@
               <input
                 type="text"
                 class="form-control"
-                v-model.trim="$.lastName.$model"
+                v-model.trim="$v.lastName.$model"
                 :class="{
                   'is-invalid': $v.lastName.$error,
-                  'is-valid': !v.lastName.$invalid,
+                  'is-valid': !$v.lastName.$invalid,
                 }"
               />
               <div class="valid-feedback">Your last name is valid!</div>
@@ -60,10 +60,10 @@
               <input
                 type="number"
                 class="form-control"
-                v-model.number.lazy="$.age.$model"
+                v-model.number.lazy="$v.age.$model"
                 :class="{
                   'is-invalid': $v.age.$error,
-                  'is-valid': !v.age.$invalid,
+                  'is-valid': !$v.age.$invalid,
                 }"
               />
               <div class="valid-feedback">Your age is valid!</div>
@@ -79,10 +79,10 @@
               <input
                 type="text"
                 class="form-control"
-                v-model.trim="$.userName.$model"
+                v-model.trim="$v.userName.$model"
                 :class="{
                   'is-invalid': $v.userName.$error,
-                  'is-valid': !v.userName.$invalid,
+                  'is-valid': !$v.userName.$invalid,
                 }"
               />
               <div class="valid-feedback">Your userName is valid!</div>
@@ -98,10 +98,10 @@
               <input
                 type="email"
                 class="form-control"
-                v-model.trim="$.email.$model"
+                v-model.trim="$v.email.$model"
                 :class="{
                   'is-invalid': $v.email.$error,
-                  'is-valid': !v.email.$invalid,
+                  'is-valid': !$v.email.$invalid,
                 }"
               />
               <div class="valid-feedback">Your email is valid!</div>
@@ -118,10 +118,10 @@
                 type="password"
                 id="password"
                 class="form-control"
-                v-model.trim="$.password.$model"
+                v-model.trim="$v.password.$model"
                 :class="{
                   'is-invalid': $v.password.$error,
-                  'is-valid': !v.password.$invalid,
+                  'is-valid': !$v.password.$invalid,
                 }"
               />
               <div class="valid-feedback">Your password is valid!</div>
@@ -150,7 +150,7 @@
               <input
                 type="password"
                 class="form-control"
-                v-model.trim="$.repeatPassword.$model"
+                v-model.trim="$v.repeatPassword.$model"
                 :class="{
                   'is-invalid': $v.repeatPassword.$error,
                   'is-valid': password != '' ? !v.repeatPassword.$invalid : '',
@@ -168,10 +168,10 @@
               <input
                 type="numeric"
                 class="form-control"
-                v-model.number.lazy="$.phoneNumber.$model"
+                v-model.number.lazy="$v.phoneNumber.$model"
                 :class="{
                   'is-invalid': $v.phoneNumber.$error,
-                  'is-valid': !v.phoneNumber.$invalid,
+                  'is-valid': !$v.phoneNumber.$invalid,
                 }"
               />
               <div class="valid-feedback">Your phone number is valid!</div>
