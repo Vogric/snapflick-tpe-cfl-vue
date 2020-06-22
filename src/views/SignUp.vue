@@ -11,83 +11,254 @@
       </p>
     </div> -->
     <form>
-      <h1>Complete the form to have your account</h1>
       <div class="form-row">
-        <div class="col-md-6 mb-3 " :class="{ invalid: $v.firstName.$error }">
+        <div class="form-group col-md-6">
           <label>First name</label>
           <input
             type="text"
-            name="firstName"
-            v-model="firstName"
-            @input="$v.firstName.$touch()"
             class="form-control"
+            v-model.trim="$.firstName.$model"
+            :class="{
+              'is-invalid': $v.firstName.$error,
+              'is-valid': !v.firstName.$invalid,
+            }"
           />
-          <p v-if="!$v.firstName.required">Enter your first name</p>
+          <div class="valid-feedback">Your first name is valid!</div>
+          <div class="invalid-feedback">
+            <span v-if="!$v.firstName.required">First name is required.</span>
+            <span v-if="!$v.firstName.minLength"
+              >First name must have at least
+              {{ $v.firstName.$params.minLength.min }} letters.
+            </span>
+            <span v-if="!$v.firstName.maxLength"
+              >First name must have at most
+              {{ $v.firstName.$params.maxLength.min }} letters.
+            </span>
+          </div>
         </div>
-        <div class="col-md-6 mb-3 " :class="{ invalid: $v.lastName.$error }">
+        <div class="form-group col-md-6">
           <label>Last name</label>
           <input
             type="text"
-            v-model="lastName"
-            @input="$v.lastName.$touch()"
             class="form-control"
+            v-model.trim="$.lastName.$model"
+            :class="{
+              'is-invalid': $v.lastName.$error,
+              'is-valid': !v.lastName.$invalid,
+            }"
           />
-          <p v-if="!$v.lastName.required">Enter your last name</p>
+          <div class="valid-feedback">Your last name is valid!</div>
+          <div class="invalid-feedback">
+            <span v-if="!$v.lastName.required">Last name is required.</span>
+            <span v-if="!$v.lastName.minLength"
+              >Last name must have at least
+              {{ $v.lastName.$params.minLength.min }} letters.
+            </span>
+            <span v-if="!$v.lastName.maxLength"
+              >Last name must have at most
+              {{ $v.lastName.$params.maxLength.min }} letters.
+            </span>
+          </div>
         </div>
-      </div>
-      <div class="form-row">
-        <div class="col-md-6 mb-3" :class="{ invalid: $v.email.$error }">
+        <div class="form-group">
+          <label>Age</label>
+          <input
+            type="number"
+            class="form-control"
+            v-model.number.lazy="$.age.$model"
+            :class="{
+              'is-invalid': $v.age.$error,
+              'is-valid': !v.age.$invalid,
+            }"
+          />
+          <div class="valid-feedback">Your age is valid!</div>
+          <div class="invalid-feedback">
+            <span v-if="!$v.age.between"
+              >Must be between {{ $v.age.$params.between.min }} and
+              {{ $v.age.$params.between.max }}
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Username</label>
+          <input
+            type="text"
+            class="form-control"
+            v-model.trim="$.userName.$model"
+            :class="{
+              'is-invalid': $v.userName.$error,
+              'is-valid': !v.userName.$invalid,
+            }"
+          />
+          <div class="valid-feedback">Your userName is valid!</div>
+          <div class="invalid-feedback">
+            <span v-if="!$v.userName.required">Username is required.</span>
+            <span v-if="!$v.userName.isUnique"
+              >This username is already registered.</span
+            >
+          </div>
+        </div>
+        <div class="form-group">
           <label>Mail</label>
           <input
             type="email"
-            v-model="email"
-            @input="$v.email.$touch()"
             class="form-control"
+            v-model.trim="$.email.$model"
+            :class="{
+              'is-invalid': $v.email.$error,
+              'is-valid': !v.email.$invalid,
+            }"
           />
-          <p v-if="!$v.lastName.required">Enter your Mail</p>
+          <div class="valid-feedback">Your email is valid!</div>
+          <div class="invalid-feedback">
+            <span v-if="!$v.email.required">Email is required.</span>
+            <span v-if="!$v.email.isUnique"
+              >This email is already registered.</span
+            >
+          </div>
         </div>
-        <div class="col-md-6 mb-3" :class="{ invalid: $v.cellNumber.$error }">
-          <label>Cell number</label>
+        <div class="form-group">
+          <label>Password</label>
           <input
-            type="number"
-            v-model="cellNumber"
-            @input="$v.cellNumber.$touch()"
+            type="password"
+            id="password"
             class="form-control"
+            v-model.trim="$.password.$model"
+            :class="{
+              'is-invalid': $v.password.$error,
+              'is-valid': !v.password.$invalid,
+            }"
           />
-          <p v-if="!$v.cellNumber.required">Enter your cell number</p>
+          <div class="valid-feedback">Your password is valid!</div>
+          <div class="invalid-feedback">
+            <span v-if="!$v.password.required">Password is required.</span>
+            <span v-if="!$v.password.minLength">
+              {{ $v.password.$params.minLength.min }} characters minimum</span
+            >
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <div class="col-md-12 mb-3" :class="{ invalid: $v.textArea.$error }">
-          <textarea
-            class="form-control"
-            v-model="textArea"
-            @input="$v.textArea.$touch()"
-            id="exampleFormControlTextarea1"
-            rows="3"
-          ></textarea>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="form-check">
+        <div class="form-group form-check">
           <input
-            class="form-check-input"
             type="checkbox"
-            id="invalidCheck"
-            required
+            id="showPassword"
+            class="form-check-input"
+            @click="toggleShowPassword"
+            v-model="showPassword"
           />
-          <label class="form-check-label">
-            Agree to terms and conditions
-          </label>
+          <label class="form-check-label" for="showPassword"
+            >Show Password</label
+          >
+        </div>
+        <div class="form-group">
+          <label>Repeat the password</label>
+          <input
+            type="password"
+            class="form-control"
+            v-model.trim="$.repeatPassword.$model"
+            :class="{
+              'is-invalid': $v.repeatPassword.$error,
+              'is-valid': password != '' ? !v.repeatPassword.$invalid : '',
+            }"
+          />
+          <div class="valid-feedback">Your password is identical!</div>
+          <div class="invalid-feedback">
+            <span v-if="!$v.repeatPassword.sameAsPassword"
+              >Password must be identical.</span
+            >
+          </div>
         </div>
       </div>
-      <button class="btn btn-danger" type="submit">Sign up now</button>
     </form>
+    <div class="container mt-5 mb-5" style="width: 500px">
+      <h3 class="card-header text-center">Register</h3>
+      <div class="card-body">
+        <form>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>First name</label>
+              <input
+                type="text"
+                class="form-control"
+                v-model.trim="$.firstName.$model"
+                :class="{
+                  'is-invalid': $v.firstName.$error,
+                  'is-valid': !v.firstName.$invalid,
+                }"
+              />
+              <div class="valid-feedback">Your first name is valid!</div>
+              <div class="invalid-feedback">
+                <span v-if="!$v.firstName.required"
+                  >First name is required.</span
+                >
+                <span v-if="!$v.firstName.minLength"
+                  >First name must have at least
+                  {{ $v.firstName.$params.minLength.min }} letters.
+                </span>
+                <span v-if="!$v.firstName.maxLength"
+                  >First name must have at most
+                  {{ $v.firstName.$params.maxLength.min }} letters.
+                </span>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label>Last name</label>
+              <input
+                type="text"
+                class="form-control"
+                v-model.trim="$.lastName.$model"
+                :class="{
+                  'is-invalid': $v.lastName.$error,
+                  'is-valid': !v.lastName.$invalid,
+                }"
+              />
+              <div class="valid-feedback">Your last name is valid!</div>
+              <div class="invalid-feedback">
+                <span v-if="!$v.lastName.required">Last name is required.</span>
+                <span v-if="!$v.lastName.minLength"
+                  >Last name must have at least
+                  {{ $v.lastName.$params.minLength.min }} letters.
+                </span>
+                <span v-if="!$v.lastName.maxLength"
+                  >Last name must have at most
+                  {{ $v.lastName.$params.maxLength.min }} letters.
+                </span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Age</label>
+              <input
+                type="number"
+                class="form-control"
+                v-model.number.lazy="$.age.$model"
+                :class="{
+                  'is-invalid': $v.age.$error,
+                  'is-valid': !v.age.$invalid,
+                }"
+              />
+              <div class="valid-feedback">Your age is valid!</div>
+              <div class="invalid-feedback">
+                <span v-if="!$v.age.between"
+                  >Must be between {{ $v.age.$params.between.min }} and
+                  {{ $v.age.$params.between.max }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { required } from "vuelidate/lib/validators";
+import {
+  required,
+  between,
+  minLength,
+  maxLength,
+  email,
+  sameAs,
+} from "vuelidate/lib/validators";
 export default {
   name: "SignUp",
   props: {
@@ -95,29 +266,84 @@ export default {
   },
   data() {
     return {
-      firstName: null,
-      lastName: null,
-      email: null,
-      cellNumber: null,
-      textArea: null,
+      firstName: "",
+      lastName: "",
+      age: "0",
+      userName: "",
+      email: "",
+      password: "",
+      repeatPassword: "",
+      showPassword: "",
+      cellNumber: "",
+      textArea: "",
     };
   },
 
   validations: {
     firstName: {
       required,
+      minLength: minLength(1),
+      maxLength: maxLength(15),
     },
     lastName: {
       required,
+      minLength: minLength(1),
+      maxLength: maxLength(18),
+    },
+    age: {
+      required,
+      between: between(18, 100),
+    },
+    userName: {
+      required,
+      isUnique(value) {
+        if (value === "") return true;
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(typeof value === "string" && value.length % 2 !== 0);
+          }, 350 + Math.random() * 300);
+        });
+      },
     },
     email: {
       required,
+      email,
+      isUnique(value) {
+        if (value === "") return true;
+
+        const emailRegex = /^(([^<>()[]\.,;:\s@"]+(.[^<>()[]\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/;
+
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(emailRegex.test(value));
+          }, 350 + Math.random() * 300);
+        });
+      },
+    },
+    password: {
+      required,
+      minLength: minLength(8),
+    },
+    repeatPassword: {
+      sameAsPassword: sameAs("password"),
     },
     cellNumber: {
       required,
     },
     textArea: {
       required,
+    },
+  },
+  methods: {
+    toggleShowPassword() {
+      let show = document.querySelector("password");
+      if (this.showPassword == false) {
+        this.showPassword = true;
+        show.type = "text";
+      } else {
+        this.showPassword = false;
+        show.type = "password";
+      }
     },
   },
 };
@@ -159,9 +385,6 @@ h1 {
 }
 form {
   padding: 0px 280px 0px 280px;
-}
-div.form-row {
-  height: 130px;
 }
 
 label {
