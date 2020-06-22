@@ -11,7 +11,8 @@ Vue.use(Vuelidate);
 
 Vue.directive("customDirective", {
   bind(el) {
-    el.style.backgroundColor = "black";
+    el.style.color = "white";
+    el.style.textShadow = "#000000 2px 2px";
   },
 });
 
