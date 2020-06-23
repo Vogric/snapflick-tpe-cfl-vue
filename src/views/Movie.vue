@@ -71,6 +71,7 @@ export default {
   width: 100%;
   height: calc(100vh - 71px);
   background-color: black;
+  text-shadow: 2px 2px black;
 }
 
 .movieDetail {

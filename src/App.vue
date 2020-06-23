@@ -30,7 +30,9 @@
             <router-link class="nav-link" to="/movies">Movies</router-link>
           </li>
           <li>
-            <router-link class="nav-link" to="/sign-up">Sign up</router-link>
+            <router-link class="nav-link" to="/contact-us"
+              >Contact us</router-link
+            >
           </li>
         </ul>
       </div>
@@ -47,6 +49,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  color: white;
 }
 .navbar {
   background-color: #000000;

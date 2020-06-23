@@ -5,24 +5,32 @@ import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Vuelidate from "vuelidate";
 import { Mixins } from "./mixins";
+import Vuex from "vuex";
 
 Vue.mixin(Mixins);
 Vue.use(Vuelidate);
 
-Vue.directive("customDirective", {
+Vue.directive("CustomDirectiveForH1", {
   bind(el) {
     el.style.color = "white";
-    el.style.textShadow = "#000000 2px 2px";
+    el.style.fontSize = "2.5rem";
+    el.style.paddingTop = "4px";
+    el.style.paddingBottom = "4px";
   },
 });
 
-// Vue.filter('', function(value){
-//   return.value.
-// })
+Vue.use(Vuex);
+const store = new Vuex.Store({
+  state: {},
+  mutations: {},
+  actions: {},
+  getters: {},
+});
 
 Vue.config.productionTip = false;
 
 new Vue({
   router,
+  store,
   render: (h) => h(App),
 }).$mount("#app");

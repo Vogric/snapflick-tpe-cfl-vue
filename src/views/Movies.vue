@@ -1,6 +1,6 @@
 <template>
   <div class="movies">
-    <h1>Watch the available movies</h1>
+    <h1 v-CustomDirectiveForH1>Watch the available movies</h1>
     <form class="form-inline my-2 my-lg-0 justify-content-center">
       <input
         class="form-control mr-sm-2"
@@ -78,12 +78,6 @@ export default {
   background-size: cover;
 }
 
-h1 {
-  color: white;
-  font-size: 2.5rem;
-  padding-top: 4px;
-}
-
 form {
   padding: 1rem;
 }
@@ -125,5 +119,9 @@ div.card-body {
 .btn-secondary:hover {
   color: rgb(255, 0, 0);
   background-color: #00000000;
+}
+
+.pagination {
+  margin: 0;
 }
 </style>
