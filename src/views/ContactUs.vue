@@ -283,6 +283,19 @@ textarea {
   background-color: #ffffffb5;
 }
 
+.form-group {
+  position: relative;
+  margin-bottom: 2.4rem;
+}
+
+.invalid-feedback,
+.valid-feedback {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+}
+
 .is-invalid {
   background-color: rgba(255, 0, 0, 0.24);
   border: 2px solid #ff0000b0;

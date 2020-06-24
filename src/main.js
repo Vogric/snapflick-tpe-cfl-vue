@@ -46,6 +46,21 @@ const store = new Vuex.Store({
           );
         });
     },
+    searchBar(context, query) {
+      let URL = `${context.state.apiBaseURL}search/movie?${context.state.apiConfig}&query=${query}`;
+
+      fetch(URL)
+        .then((res) => res.json())
+        .then(({ results }) => {
+          context.commit(
+            "setMovies",
+            results.map((m) => {
+              m.poster_path = `https://image.tmdb.org/t/p/w185_and_h278_bestv2${m.poster_path}`;
+              return m;
+            })
+          );
+        });
+    },
   },
   getters: {},
 });

@@ -50,7 +50,7 @@ export default {
     const moviesStorage = JSON.parse(localStorage.getItem("movies"));
     if (moviesStorage) {
       movie = moviesStorage.find((elem) => {
-        elem.id == currentId;
+        return elem.id == currentId;
       });
       if (movie) {
         this.movie = movie;
@@ -65,23 +65,39 @@ export default {
   },
   methods: {
     fetchMovie() {
+      if (this.getMovieStorage(this.$route.params.id)) {
+        return false;
+      }
       fetch(
         `${this.apiBaseURL}movie/${this.$route.params.id}?${this.apiConfig}`
       )
         .then((res) => res.json())
         .then((data) => {
           this.movie = data;
+          this.storeMovie(data);
         });
     },
     storeMovie(movie) {
-      const moviesStorage = JSON.parse(localStorage.getItem("movies"));
+      let moviesStorage = JSON.parse(localStorage.getItem("movies"));
       if (moviesStorage) {
         moviesStorage.push(movie);
       } else {
-        const moviesToStore = [movie];
-        localStorage.setItem("movies", JSON.stringify(moviesToStore));
+        moviesStorage = [movie];
       }
-      localStorage.setItem("movies", movie);
+      localStorage.setItem("movies", JSON.stringify(moviesStorage));
+      console.log(movie);
+    },
+    getMovieStorage(id) {
+      let moviesStorage = JSON.parse(localStorage.getItem("movies"));
+      if (!moviesStorage) {
+        return false;
+      }
+      let movie = moviesStorage.find((m) => m.id == id);
+      if (!movie) {
+        return false;
+      }
+      this.movie = movie;
+      return true;
     },
   },
 };

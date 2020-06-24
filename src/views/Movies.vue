@@ -1,16 +1,17 @@
 <template>
   <div class="movies">
     <h1 v-CustomDirectiveForH1>Watch the available movies</h1>
-    <form class="form-inline my-2 my-lg-0 justify-content-center">
+    <form
+      @submit.prevent="search"
+      class="form-inline my-2 my-lg-0 justify-content-center"
+    >
       <input
         class="form-control mr-sm-2"
         type="search"
         placeholder="Search a movie"
         aria-label="Search"
+        v-model="query"
       />
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-        Search
-      </button>
     </form>
     <section class="cards-container">
       <div v-for="movie in movies" :key="movie.title" class="card">
@@ -55,22 +56,14 @@ export default {
       return this.$store.state.movies;
     },
   },
-  // methods: {
-  //   getUltimateMovies() {
-  //     const URL = `${this.apiBaseURL}discover/movie?primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22&${this.apiConfig}`;
-  //     fetch(URL)
-  //       .then((response) => response.json())
-  //       .then(({ results }) => {
-  //         this.movies = results.map((m) => {
-  //           m.poster_path = `https://image.tmdb.org/t/p/w185_and_h278_bestv2${m.poster_path}`;
-  //           return m;
-  //         });
-  //       });
-  //   },
-  // },
-  // mounted() {
-  //   this.getUltimateMovies();
-  // },
+  data() {
+    return { query: "" };
+  },
+  methods: {
+    search() {
+      this.$store.dispatch("searchBar", this.query);
+    },
+  },
 };
 </script>
 
@@ -87,7 +80,8 @@ form {
 }
 
 input.form-control.mr-sm-2 {
-  width: 267px;
+  text-align: center;
+  width: 50rem;
   color: white;
   background-color: black;
 }
