@@ -45,6 +45,17 @@ export default {
   },
   mounted() {
     this.fetchMovie();
+    const currentId = this.$route.params.id;
+    let movie = null;
+    const moviesStorage = JSON.parse(localStorage.getItem("movies"));
+    if (moviesStorage) {
+      movie = moviesStorage.find((elem) => {
+        elem.id == currentId;
+      });
+      if (movie) {
+        this.movie = movie;
+      }
+    }
   },
   watch: {
     $route(to) {
@@ -61,6 +72,16 @@ export default {
         .then((data) => {
           this.movie = data;
         });
+    },
+    storeMovie(movie) {
+      const moviesStorage = JSON.parse(localStorage.getItem("movies"));
+      if (moviesStorage) {
+        moviesStorage.push(movie);
+      } else {
+        const moviesToStore = [movie];
+        localStorage.setItem("movies", JSON.stringify(moviesToStore));
+      }
+      localStorage.setItem("movies", movie);
     },
   },
 };

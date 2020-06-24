@@ -37,7 +37,6 @@ const store = new Vuex.Store({
       fetch(URL)
         .then((response) => response.json())
         .then(({ results }) => {
-          console.log(results);
           context.commit(
             "setMovies",
             results.map((m) => {
