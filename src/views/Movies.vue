@@ -26,7 +26,7 @@
     </section>
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
+        <li class="page-item">
           <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
             >Previous</a
           >
@@ -45,28 +45,32 @@
 <script>
 export default {
   name: "Movies",
-  data() {
-    return {
-      movies: [],
-    };
+
+  mounted() {
+    this.$store.dispatch("getUltimateMovies");
   },
 
-  methods: {
-    getUltimateMovies() {
-      const URL = `${this.apiBaseURL}discover/movie?primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22&${this.apiConfig}`;
-      fetch(URL)
-        .then((response) => response.json())
-        .then(({ results }) => {
-          this.movies = results.map((m) => {
-            m.poster_path = `https://image.tmdb.org/t/p/w185_and_h278_bestv2${m.poster_path}`;
-            return m;
-          });
-        });
+  computed: {
+    movies() {
+      return this.$store.state.movies;
     },
   },
-  mounted() {
-    this.getUltimateMovies();
-  },
+  // methods: {
+  //   getUltimateMovies() {
+  //     const URL = `${this.apiBaseURL}discover/movie?primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22&${this.apiConfig}`;
+  //     fetch(URL)
+  //       .then((response) => response.json())
+  //       .then(({ results }) => {
+  //         this.movies = results.map((m) => {
+  //           m.poster_path = `https://image.tmdb.org/t/p/w185_and_h278_bestv2${m.poster_path}`;
+  //           return m;
+  //         });
+  //       });
+  //   },
+  // },
+  // mounted() {
+  //   this.getUltimateMovies();
+  // },
 };
 </script>
 
@@ -123,5 +127,10 @@ div.card-body {
 
 .pagination {
   margin: 0;
+}
+
+a.page-link {
+  background-color: rgba(98, 98, 98, 0.24);
+  color: white;
 }
 </style>

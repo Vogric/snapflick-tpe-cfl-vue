@@ -223,12 +223,12 @@ export default {
       );
       this.$v.$touch();
       if (this.$v.$invalid) {
-        this.submitStatus = "ERROR";
+        this.submitStatus = "Error";
       } else {
         // do your submit logic here
-        this.submitStatus = "PENDING";
+        this.submitStatus = "Pending";
         setTimeout(() => {
-          this.submitStatus = "OK";
+          this.submitStatus = "Ok";
         }, 500);
       }
     },

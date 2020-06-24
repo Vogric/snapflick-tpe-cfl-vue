@@ -21,9 +21,33 @@ Vue.directive("CustomDirectiveForH1", {
 
 Vue.use(Vuex);
 const store = new Vuex.Store({
-  state: {},
-  mutations: {},
-  actions: {},
+  state: {
+    movies: [],
+    apiBaseURL: "https://api.themoviedb.org/3/",
+    apiConfig: "api_key=0b536ecc2fc4b0028b1a20813de48533",
+  },
+  mutations: {
+    setMovies(state, movies) {
+      state.movies = movies;
+    },
+  },
+  actions: {
+    getUltimateMovies(context) {
+      const URL = `${context.state.apiBaseURL}discover/movie?primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22&${context.state.apiConfig}`;
+      fetch(URL)
+        .then((response) => response.json())
+        .then(({ results }) => {
+          console.log(results);
+          context.commit(
+            "setMovies",
+            results.map((m) => {
+              m.poster_path = `https://image.tmdb.org/t/p/w185_and_h278_bestv2${m.poster_path}`;
+              return m;
+            })
+          );
+        });
+    },
+  },
   getters: {},
 });
 
