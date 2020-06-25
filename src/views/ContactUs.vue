@@ -2,7 +2,7 @@
   <div class="ContactUs">
     <div class="container">
       <div class="card">
-        <h1 v-CustomDirectiveForH1 class="text-center">Register</h1>
+        <h1 v-CustomDirectiveForH1 class="text-center">Contact us</h1>
         <h2>
           Send us a comment about what you think of your
           <span class="brand">{{ brand | ChangeToUppercase }}</span>
@@ -256,10 +256,6 @@ p {
 
 h2 {
   font-size: 1.4rem;
-}
-
-.brand {
-  color: rgb(155, 10, 10);
 }
 
 div.card {

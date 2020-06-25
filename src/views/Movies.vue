@@ -89,7 +89,7 @@ input.form-control.mr-sm-2 {
 .cards-container {
   display: flex;
   flex-wrap: wrap;
-  width: 86%;
+  width: 77%;
   height: 69%;
   margin-left: auto;
   margin-right: auto;
@@ -97,7 +97,7 @@ input.form-control.mr-sm-2 {
 
 .card {
   width: 8%;
-  height: 10%;
+  height: 31%;
   margin: 10px;
 }
 
@@ -110,7 +110,7 @@ div.card-body {
   font-size: 0.7rem;
   width: 93px;
   background-color: #000000c7;
-  padding: 5px;
+  padding: 14px 12px 0px 0px;
   border: 0;
 }
 

@@ -65,7 +65,8 @@
   color: rgb(255, 0, 0);
 }
 
-a.router-link-exact-active {
+a.router-link-exact-active,
+.brand {
   color: rgb(136, 25, 25);
 }
 </style>

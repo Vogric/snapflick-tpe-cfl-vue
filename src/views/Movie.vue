@@ -18,9 +18,8 @@
             </div>
             <div class="col-12 col-md-8 col-lg9">
               <h2>{{ movie.title }}</h2>
+              <p>{{ movie.overview }}</p>
               <ul>
-                <li>{{ movie.overview }}</li>
-                <li>Category: {{ movie.genre_ids }}</li>
                 <li>Release date: {{ movie.release_date }}</li>
                 <li>Original language: {{ movie.original_language }}</li>
                 <li>Popularity: {{ movie.popularity }}</li>
@@ -124,29 +123,11 @@ h2 {
   font-size: 80px;
 }
 
-div.card-body {
-  margin: 0;
-  padding: 0;
-}
-
-.btn-secondary {
-  font-size: 12px;
-  width: 93px;
-  background-color: #000000c7;
-  padding: 5px;
-  border: 0;
-}
-
-.btn-secondary:hover {
-  color: rgb(255, 0, 0);
-  background-color: #00000000;
-}
-
 ul {
   list-style: none;
 }
 
-li {
+p {
   font-size: 18px;
 }
 </style>
