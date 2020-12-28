@@ -1,4 +1,4 @@
-const APIKEY = "0b536ecc2fc4b0028b1a20813de48533";
+const APIKEY = "";
 const BASEURL = "https://api.themoviedb.org/3/";
 export const Mixins = {
   data() {
